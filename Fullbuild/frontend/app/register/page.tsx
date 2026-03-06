@@ -1,0 +1,3 @@
+'use client'
+import { useState } from 'react'; import { useRouter } from 'next/navigation'; import { api } from '@/lib/api';
+export default function Register(){const [email,setEmail]=useState('');const [password,setPassword]=useState(''); const r=useRouter(); return <div className='space-y-2'><h2>Register</h2><input className='text-black' value={email} onChange={e=>setEmail(e.target.value)} placeholder='email'/><input className='text-black' type='password' value={password} onChange={e=>setPassword(e.target.value)} placeholder='password'/><button className='border p-2' onClick={async()=>{await api('/api/auth/register',{method:'POST',body:JSON.stringify({email,password})});r.push('/login')}}>Create</button></div>}
